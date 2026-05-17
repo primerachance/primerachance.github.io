@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Primera Chance — Tu primer empleo empieza acá</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --naranja:      #FF6B35;
+      --naranja-claro:#FFF0E8;
+      --azul:         #1B2B4B;
+      --azul-medio:   #2E4472;
+      --crema:        #FFF8F0;
+      --crema-osc:    #F5E8D8;
+      --gris:         #7A7A7A;
+      --blanco:       #FFFFFF;
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body:    'Plus Jakarta Sans', -apple-system, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--crema);
+      color: var(--azul);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ─────────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 2.5rem;
+      background: rgba(255,248,240,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--crema-osc);
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.25rem;
+      color: var(--azul);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .logo span { color: var(--naranja); }
+
+    .nav-btn {
+      background: var(--naranja);
+      color: white;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 0.6rem 1.4rem;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: all 0.2s;
+      letter-spacing: 0.01em;
+    }
+    .nav-btn:hover { background: var(--azul); transform: translateY(-1px); }
+
+    /* ── HERO ────────────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 7rem 2.5rem 4rem;
+      gap: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,107,53,0.12) 0%, transparent 70%);
+      top: -200px; right: -200px;
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--naranja-claro);
+      color: var(--naranja);
+      border: 1.5px solid rgba(255,107,53,0.25);
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      width: fit-content;
+      margin-bottom: 1.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--naranja);
+      animation: blink 1.5s ease infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--azul);
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--naranja);
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--gris);
+      line-height: 1.7;
+      margin-top: 1.5rem;
+      font-weight: 400;
+      max-width: 440px;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .btn-primary {
+      background: var(--naranja);
+      color: white;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.95rem 2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: all 0.25s;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-primary:hover {
+      background: var(--azul);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(255,107,53,0.3);
+    }
+
+    .btn-secondary {
+      border: 2px solid var(--azul);
+      color: var(--azul);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.9rem 2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+    .btn-secondary:hover {
+      background: var(--azul);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* hero derecho — card visual */
+    .hero-right {
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    .hero-card {
+      background: var(--azul);
+      border-radius: 24px;
+      padding: 2.5rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(255,107,53,0.15);
+      top: -100px; right: -80px;
+    }
+
+    .hero-card-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--naranja);
+      margin-bottom: 1.5rem;
+    }
+
+    .talleres-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .talleres-list li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .taller-num {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(255,107,53,0.2);
+      border: 1.5px solid rgba(255,107,53,0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--naranja);
+      flex-shrink: 0;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .stat-n {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--naranja);
+      letter-spacing: -0.02em;
+    }
+    .stat-l {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.3;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECCIONES ───────────────────────────────────────────────── */
+    section { padding: 6rem 2.5rem; }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--naranja);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--azul);
+      margin-bottom: 3rem;
+      max-width: 560px;
+    }
+
+    /* ── TALLERES ────────────────────────────────────────────────── */
+    .talleres-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .taller-card {
+      background: var(--blanco);
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1.5px solid var(--crema-osc);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .taller-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--naranja);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .taller-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(27,43,75,0.1);
+      border-color: transparent;
+    }
+
+    .taller-card:hover::after { transform: scaleX(1); }
+
+    .taller-emoji {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .taller-titulo {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--azul);
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+
+    .taller-desc {
+      font-size: 0.95rem;
+      color: var(--gris);
+      line-height: 1.6;
+    }
+
+    .taller-badge {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--naranja);
+      background: var(--naranja-claro);
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+    }
+
+    /* ── CÓMO FUNCIONA ───────────────────────────────────────────── */
+    .como {
+      background: var(--azul);
+      border-radius: 32px;
+      margin: 0 1rem;
+    }
+
+    .como .section-label { color: var(--naranja); }
+    .como .section-title { color: white; }
+
+    .pasos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2.5rem;
+      counter-reset: paso;
+    }
+
+    .paso {
+      counter-increment: paso;
+    }
+
+    .paso-icon {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: rgba(255,107,53,0.15);
+      border: 1.5px solid rgba(255,107,53,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .paso-num {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--naranja);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .paso-titulo {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    .paso-desc {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+
+    /* ── CONTACTO ────────────────────────────────────────────────── */
+    .contacto-inner {
+      background: var(--naranja);
+      border-radius: 28px;
+      padding: 4rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contacto-inner::before {
+      content: '';
+      position: absolute;
+      width: 350px; height: 350px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      top: -150px; right: -100px;
+    }
+
+    .contacto-titulo {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 900;
+      color: white;
+      max-width: 380px;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .contacto-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      min-width: 240px;
+      position: relative;
+    }
+
+    .btn-blanco {
+      background: white;
+      color: var(--naranja);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.95rem 1.8rem;
+      border-radius: 100px;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.25s;
+    }
+    .btn-blanco:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .btn-outline-blanco {
+      border: 2px solid rgba(255,255,255,0.5);
+      color: white;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.85rem 1.8rem;
+      border-radius: 100px;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.25s;
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    }
+    .btn-outline-blanco:hover { background: rgba(255,255,255,0.15); }
+
+    /* ── FOOTER ──────────────────────────────────────────────────── */
+    footer {
+      background: var(--azul);
+      color: rgba(255,255,255,0.4);
+      padding: 2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-weight: 900;
+      color: white;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+    }
+    .footer-logo span { color: var(--naranja); }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; padding: 6rem 1.2rem 3rem; gap: 2rem; }
+      .hero-right { order: -1; }
+      section { padding: 4rem 1.2rem; }
+      .como { margin: 0; border-radius: 0; }
+      .contacto-inner { padding: 2.5rem 1.5rem; }
+      nav { padding: 1rem 1.2rem; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">Primera<span>Chance</span></a>
+  <a class="nav-btn" href="#inscripcion">Anotate gratis</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">🌱 ONG gratuita · Buenos Aires</div>
+    <h1>Tu primer<br/><em>empleo</em><br/>empieza acá</h1>
+    <p class="hero-desc">Talleres presenciales y gratuitos para jóvenes egresados que quieren dar el primer paso en el mundo laboral.</p>
+    <div class="hero-actions">
+      <a href="#inscripcion" class="btn-primary">Quiero anotarme →</a>
+      <a href="#talleres" class="btn-secondary">Ver talleres</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="hero-card-label">Lo que vas a aprender</div>
+      <ul class="talleres-list">
+        <li><span class="taller-num">01</span> Cómo armar tu CV desde cero</li>
+        <li><span class="taller-num">02</span> Excel básico para el trabajo</li>
+        <li><span class="taller-num">03</span> Cómo encarar una entrevista</li>
+        <li><span class="taller-num">04</span> Dónde y cómo buscar trabajo</li>
+      </ul>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-n">100%</div>
+          <div class="stat-l">Siempre<br/>gratuito</div>
+        </div>
+        <div>
+          <div class="stat-n">CABA</div>
+          <div class="stat-l">Presencial<br/>en Capital</div>
+        </div>
+        <div>
+          <div class="stat-n">+WA</div>
+          <div class="stat-l">Seguimiento<br/>personalizado</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TALLERES -->
+<section id="talleres">
+  <div class="section-label">Lo que van a aprender</div>
+  <h2 class="section-title">Herramientas reales para conseguir trabajo</h2>
+  <div class="talleres-grid">
+    <div class="taller-card">
+      <span class="taller-emoji">📄</span>
+      <div class="taller-titulo">Tu CV desde cero</div>
+      <p class="taller-desc">Aprendé a armar un CV claro y profesional aunque no tengas experiencia. Te mostramos cómo destacar lo que sí tenés.</p>
+      <span class="taller-badge">Taller presencial</span>
+    </div>
+    <div class="taller-card">
+      <span class="taller-emoji">📊</span>
+      <div class="taller-titulo">Excel básico</div>
+      <p class="taller-desc">Las empresas lo piden siempre. Aprendé fórmulas, planillas y atajos desde el principio, sin miedo.</p>
+      <span class="taller-badge">Taller presencial</span>
+    </div>
+    <div class="taller-card">
+      <span class="taller-emoji">🤝</span>
+      <div class="taller-titulo">Cómo encarar una entrevista</div>
+      <p class="taller-desc">Practicamos juntos. Qué decir, cómo presentarte, preguntas frecuentes y cómo manejar los nervios.</p>
+      <span class="taller-badge">Taller presencial</span>
+    </div>
+    <div class="taller-card">
+      <span class="taller-emoji">🔍</span>
+      <div class="taller-titulo">Dónde buscar trabajo</div>
+      <p class="taller-desc">Bumeran, LinkedIn, Computrabajo y más. Aprendé a crear tu perfil y aplicar de forma efectiva.</p>
+      <span class="taller-badge">Taller presencial</span>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section style="padding: 6rem 2.5rem;">
+  <div class="como" style="padding: 5rem 3rem;">
+    <div class="section-label">El proceso</div>
+    <h2 class="section-title">¿Cómo funciona?</h2>
+    <div class="pasos">
+      <div class="paso">
+        <div class="paso-icon">✍️</div>
+        <div class="paso-num">Paso 01</div>
+        <div class="paso-titulo">Te anotás gratis</div>
+        <p class="paso-desc">Un formulario simple. Sin requisitos, sin costo, sin letra chica.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-icon">📍</div>
+        <div class="paso-num">Paso 02</div>
+        <div class="paso-titulo">Venís al taller</div>
+        <p class="paso-desc">Talleres presenciales en Capital Federal, en horarios accesibles.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-icon">📄</div>
+        <div class="paso-num">Paso 03</div>
+        <div class="paso-titulo">Te llevás tu guía</div>
+        <p class="paso-desc">Cada taller tiene un material para llevarte y repasar cuando quieras.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-icon">💬</div>
+        <div class="paso-num">Paso 04</div>
+        <div class="paso-titulo">Te acompañamos</div>
+        <p class="paso-desc">Sumás un grupo de WhatsApp para consultas y seguimiento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="inscripcion">
+  <div class="contacto-inner">
+    <div class="contacto-titulo">¿Querés anotarte o saber más?</div>
+    <div class="contacto-actions">
+      <a href="mailto:hola@primerachance.org.ar" class="btn-blanco">✉️ Escribinos por mail</a>
+      <a href="https://wa.me/5491100000000" class="btn-outline-blanco" target="_blank">💬 WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Primera<span>Chance</span></div>
+  <div>Tu primer empleo empieza acá · Buenos Aires, Argentina</div>
+  <div>Organización sin fines de lucro · 100% gratuito</div>
+</footer>
+
+</body>
+</html>
